@@ -1,16 +1,22 @@
 html, body {
   width: 100px;
 }
+#tickerDiv {
+            font-weight: bold;
+            height: 30px;
+            line-height: 18px;
+            font-size: 1em;
+            
+        }
 
 .hidden {
   display: none;
 }
 
 .button {
-  margin: 3% auto;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
-  font-size: 1em;
+  font-size: 2em;
   cursor: pointer;
 }
 

@@ -1,10 +1,4 @@
-/**
- * CSS to hide everything on the page,
- * except for elements that have the "beastify-image" class.
- */
-const hidePage = `body > :not(.beastify-image) {
-                    display: none;
-                  }`;
+
 
 /**
  * Listen for clicks on the buttons, and send the appropriate message to
@@ -12,21 +6,11 @@ const hidePage = `body > :not(.beastify-image) {
  */
 function listenForClicks() {
   document.addEventListener("click", (e) => {
-
-
-    /**
-     * Insert the page-hiding CSS into the active tab,
-     * then get the beast URL and
-     * send a "beastify" message to the content script in the active tab.
-     */
-    function beastify(tabs) {
-      // browser.tabs.insertCSS({code: hidePage}).then(() => {
-        // let url = beastNameToURL(e.target.textContent);
+    function mindfully(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
-          command: "beastify",
+          command: "mindfully",
           beastURL: e.target.textContent
         });
-      // });
     }
 
     /**
@@ -44,9 +28,7 @@ function listenForClicks() {
     /**
      * Just log the error to the console.
      */
-    function reportError(error) {
-      console.error(`Could not beastify: ${error}`);
-    }
+
 
     /**
      * Get the active tab,
@@ -75,6 +57,16 @@ function reportExecuteScriptError(error) {
   console.error(`Failed to execute beastify content script: ${error.message}`);
 }
 
+async function update_ticker_div() {
+    try {
+        let gBackground = await browser.runtime.getBackgroundPage(),
+            tickerDiv = document.getElementById("tickerDiv");
+        tickerDiv.textContent = await gBackground.get_popup_ticker();
+
+    } catch (e) { console.error(e); }
+};
+update_ticker_div();
+
 /**
  * When the popup loads, inject a content script into the active tab,
  * and add a click handler.
@@ -83,3 +75,31 @@ function reportExecuteScriptError(error) {
 browser.tabs.executeScript({file: "/content_scripts/beastify.js"})
 .then(listenForClicks)
 .catch(reportExecuteScriptError);
+
+
+
+async function handle_summary_button_click() {
+    try {
+        let url = browser.extension.getURL("summary/index.html"),
+            // we have to query then filter because we can't query for
+            // non-standard add-on url directly
+            tabs = await browser.tabs.query({}),
+            summaryTab = tabs.filter((t) => t.url === url);
+
+        if (summaryTab[0]) {
+            // We have to activate the tab first because if the active window
+            // changes, the popup closes, taking this code down with it.
+            await browser.tabs.update(summaryTab[0].id, {active: true});
+            await browser.windows.update(summaryTab[0].windowId, {focused: true});
+        } else {
+            browser.tabs.create({url: url});
+        }
+        // Close the popup dropdown, if it is still open and this code is still
+        // running.
+        window.close();
+
+    } catch (e) { console.error(e); }
+};
+
+document.getElementById("summaryButton").addEventListener('click', handle_summary_button_click);
+

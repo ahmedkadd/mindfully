@@ -8,18 +8,30 @@
   "icons": {
     "48": "icons/mindful-48.png"
   },
-
+   "options_ui": {
+    "page": "options/options.html"
+  },
   "permissions": [
-    "activeTab"
-  ],
-
+    "tabs",
+    "storage",
+    "notifications",
+    "idle"
+    ],
+  "background": {
+    "scripts": [
+        "format-time.js",
+        "new-day.js",
+        "ticker-timer-modes.js",
+        "tracking-events.js",
+        "main.js"
+    ]
+  },
   "browser_action": {
+    "browser_style": true,
     "default_icon": "icons/mindful.png",
     "default_title": "Mindfully",
-    "default_popup": "popup/choose_beast.html"
-  },
-    "web_accessible_resources": [
-  ]
+    "default_popup": "popup/mindfully.html"
+  }
 
 
 }
