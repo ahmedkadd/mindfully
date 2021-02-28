@@ -322,7 +322,7 @@ function sleep(ms) {
 }
 
 async function handleActivated(activeInfo) {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
   browser.browserAction.setIcon({path: "icons/green.png"});
  await sleep(1000);
   browser.browserAction.setIcon({path: "icons/mindful.png"});
