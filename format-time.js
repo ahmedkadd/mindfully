@@ -9,11 +9,14 @@ function time_to_hours_and_minutes(time) {
     let absTime = Math.abs(time),
         h = Math.floor(absTime / 3600),
         m = Math.floor(absTime / 60) % 60;
-    return [h, m];
+        s = Math.floor(absTime % 60);
+
+    return [h, m,s];
 };
 
 function format_time(time) {
-    let [h, m] = time_to_hours_and_minutes(time);
+    let [h, m, s] = time_to_hours_and_minutes(time);
     return ((h < 1) ? "0:" : h + ":") +
-           ((m < 10) ? ((m < 1) ? "00" : "0" + m) : m);
+           ((m < 10) ? ((m < 1) ? "00" : "0" + m) : m) + ":"+ 
+           ((s < 10) ? ((s < 1) ? "00" : "0" + s) : s); 
 };

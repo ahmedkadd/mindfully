@@ -317,5 +317,20 @@ function handle_installed(details) {
     }
 };
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function handleActivated(activeInfo) {
+    for (let i = 0; i < 3; i++) {
+  browser.browserAction.setIcon({path: "icons/mindful2.png"});
+ await sleep(1000);
+  browser.browserAction.setIcon({path: "icons/mindful.png"});
+ await sleep(1000);
+  }
+}
+
+browser.tabs.onActivated.addListener(handleActivated);
+
 browser.runtime.onInstalled.addListener(handle_installed);
 browser.runtime.onStartup.addListener(handle_startup);
