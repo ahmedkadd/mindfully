@@ -6,6 +6,20 @@
   "description": "A tool to browse the web mindfully.",
 
   "icons": {
-    "48": "icons/mindful.png"
-  }
+    "48": "icons/mindful-48.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/mindful.png",
+    "default_title": "Mindfully",
+    "default_popup": "popup/choose_beast.html"
+  },
+    "web_accessible_resources": [
+  ]
+
+
 }
