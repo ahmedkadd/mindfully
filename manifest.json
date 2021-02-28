@@ -6,7 +6,7 @@
   "description": "A tool to browse the web mindfully.",
 
   "icons": {
-    "48": "icons/mindful-48.png"
+    "48": "icons/mindful.png"
   },
 
   "permissions": [
