@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "Mindfully",
+  "version": "1.0",
+
+  "description": "A tool to browse the web mindfully.",
+
+  "icons": {
+    "48": "icons/mindful.png"
+  }
+}
