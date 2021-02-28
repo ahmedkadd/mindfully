@@ -20,14 +20,9 @@ html, body {
   cursor: pointer;
 }
 
-.beast:hover {
-  background-color: #CFF2F2;
+.emoji {
+  font-weight: 600
 }
-
-.beast {
-  background-color: #E5F2F2;
-}
-
 
 .reset {
   background-color: #FBFBC9;
@@ -35,4 +30,10 @@ html, body {
 
 .reset:hover {
   background-color: #EAEA9D;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
