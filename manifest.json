@@ -14,15 +14,6 @@
     "notifications",
     "idle"
     ],
-  "background": {
-    "scripts": [
-        "format-time.js",
-        "new-day.js",
-        "ticker-timer-modes.js",
-        "tracking-events.js",
-        "main.js"
-    ]
-  },
   "browser_action": {
     "browser_style": true,
     "default_icon": "icons/mindful.png",
